@@ -1,0 +1,34 @@
+name: wipos-beta
+description: Beta version of WIPOS
+
+base-image: ghcr.io/ublue-os/bluefin-dx-nvidia
+image-version: 39 # latest is also supported if you want new updates ASAP
+
+modules:
+  - type: files
+    files:
+      - usr: /usr # copies config/files/usr into your image's /usr.
+                  # put configuration files you want in /etc/ on a booted system 
+                  # in /usr/etc/ in the image. read more in files module reference.
+
+  - type: rpm-ostree
+    repos:
+      - /tmp/config/files/repos/protonvpn-stable.repo
+    install:
+      - proton-vpn-gnome-desktop
+    remove:
+      - firefox # default firefox removed in favor of flatpak
+      - firefox-langpacks # langpacks needs to also be removed to prevent dependency problems
+
+  - type: default-flatpaks
+    notify: true # Send notification after install/uninstall is finished (true/false)
+    system:
+      install:
+        - org.mozilla.firefox
+        # - org.gnome.Loupe
+        - one.ablaze.floorp//lightning
+      remove:
+      # - org.gnome.eog
+
+  - type: signing # this sets up the proper policy & signing files for signed images to work fully
+
