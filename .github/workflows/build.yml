@@ -1,4 +1,4 @@
-name: bluebuild
+name: WIPOS Build
 on:
   schedule:
     - cron: "00 17 * * *" # build at 17:00 UTC every day 
@@ -11,20 +11,18 @@ on:
   workflow_dispatch: # allow manually triggering builds
 jobs:
   bluebuild:
-    name: Build Custom Image
+    name: Build WIPOS
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
       id-token: write
     strategy:
-      fail-fast: false # stop GH from cancelling all matrix builds if one fails
+      fail-fast: false
       matrix:
         recipe:
-          # !! Add your recipes here 
-          - recipe.yml
+          - recipes/wipos.yml
     steps:
-       # the build is fully handled by the reusable github action
       - name: Build Custom Image
         uses: blue-build/github-action@v1.1.0
         with:
