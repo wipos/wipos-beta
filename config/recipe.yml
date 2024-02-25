@@ -2,27 +2,11 @@ name: wipos-beta
 description: Beta version of WIPOS
 
 base-image: ghcr.io/ublue-os/bluefin-dx-nvidia
-image-version: 39 # latest is also supported if you want new updates ASAP
+image-version: 39
 
 modules:
-  - type: files
-    files:
-      - usr: /usr
-      - etc: /etc
-
-  - type: rpm-ostree
-    repos:
-    install:
-      - proton-vpn-gnome-desktop
-    remove:
-
-  - type: default-flatpaks
-    notify: true # Send notification after install/uninstall is finished (true/false)
-    system:
-      install:
-        - one.ablaze.floorp//lightning
-      remove:
-      # - org.gnome.eog
-
-  - type: signing # this sets up the proper policy & signing files for signed images to work fully
-
+  - from-file: common/common-files.yml
+  - from-file: common/common-packages.yml
+  - from-file: common/common-flatpaks.yml
+  - from-file: common/os-release.yml
+  - type: signing
