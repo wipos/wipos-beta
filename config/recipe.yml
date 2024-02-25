@@ -16,15 +16,11 @@ modules:
     install:
       - proton-vpn-gnome-desktop
     remove:
-      - firefox # default firefox removed in favor of flatpak
-      - firefox-langpacks # langpacks needs to also be removed to prevent dependency problems
 
   - type: default-flatpaks
     notify: true # Send notification after install/uninstall is finished (true/false)
     system:
       install:
-        - org.mozilla.firefox
-        # - org.gnome.Loupe
         - one.ablaze.floorp//lightning
       remove:
       # - org.gnome.eog
