@@ -1,7 +1,7 @@
 name: wipos-beta
 description: Beta version of WIPOS
 
-base-image: ghcr.io/ublue-os/bluefin-dx-nvidia
+base-image: ghcr.io/ublue-os/bluefin-dx
 image-version: 39
 
 modules:
