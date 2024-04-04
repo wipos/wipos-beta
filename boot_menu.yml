@@ -1,5 +1,9 @@
 ublue_variants:
-  - label: blue-build/template
+  - label: wipos/wipos-beta
     ks: /kickstart/ublue-os.ks
     flavors:
-      - label: blue-build/template
+      - label: wipos/wipos-beta
+  - label: wipos/nvidia
+    ks: /kickstart/ublue-os.ks
+    flavors:
+      - label: wipos/nvidia
